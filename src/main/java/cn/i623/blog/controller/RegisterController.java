@@ -10,6 +10,6 @@ public class RegisterController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest arg0,
                                       HttpServletResponse arg1) throws Exception {
         return new ModelAndView("/WEB-INF/jsp/login.jsp");
-    }
+    }//
 }
 
