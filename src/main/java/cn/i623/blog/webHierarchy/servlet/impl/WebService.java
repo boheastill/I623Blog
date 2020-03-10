@@ -11,7 +11,7 @@ import java.sql.Date;
 /** 在线更新1.update 2.reload
  * idea service 控制台乱码1.mysql：log改gbk。 2.java sout  ：edit 服务器，取消勾选使用环境变量 3.参数乱码， 设置encode
  * */
-@WebServlet("/WebService")
+//@WebServlet("/WebService")
 public class WebService extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private String title; //
