@@ -15,4 +15,12 @@
     <bean name="/login" class="cn.i623.blog.controller.LoginController"/>
     <!-- LoginController控制器类，映射到"/register" -->
     <bean name="/register" class="cn.i623.blog.controller.RegisterController"/>
+<!--    ModelAndView中的参数可以省略头尾-->
+<!--    返回的视图名称都解析为 InternalResourceView 对象-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <!--前缀-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
 </beans>

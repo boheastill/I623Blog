@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 public class LoginController implements Controller {
-    public ModelAndView handleRequest(HttpServletRequest arg0,
-                                      HttpServletResponse arg1) throws Exception {
-        return new ModelAndView("/WEB-INF/jsp/register.jsp");
+    public ModelAndView handleRequest(HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
+        return new ModelAndView("login");
     }
 }
