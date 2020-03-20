@@ -2,9 +2,11 @@ package cn.i623.blog.service.impl;
 
 import cn.i623.blog.dao.BlogDao;
 import cn.i623.blog.entiy.Blog;
+import cn.i623.blog.pojo.BlogForm;
 import cn.i623.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -30,27 +32,33 @@ public class BlogServiceImpl implements BlogService {
     }
 
     //增加博客
-    public void addBlog(Blog blog) {
-//        blog.setTitle("t0asdfsda1");
-//        blog.setAuthor("adf喀什的数量可否考虑a");
-//        blog.setContent("啊大开始看");
+    public void addBlog(BlogForm blogForm) {
+        Blog blog=new Blog();
+        blog.setTitle(blogForm.getTitle());
+        blog.setAuthor(blogForm.getAuthor());
+        blog.setContent(blogForm.getContent());
+//        System.out.println(blogForm.getContent());
+
+        //写入dao
         blogDao.addBlog(blog);
         //打印
-        searchBlogList();
+//        searchBlogList();
     }
 
-    //查询单个
-    public  void  searchBlog(int id){
+    //查询
+    public Blog searchBlog(int id){
         Blog blog= blogDao.queryBlogbyid(id);
-        System.out.println(blog);
+//        System.out.println(blog);
+        return blog;
     }
 
     //修改
-    public void editBlog (Blog blog){
-
+    public void editBlog (BlogForm blogForm){
+        blog.setTitle(blogForm.getTitle());
+        blog.setAuthor(blogForm.getAuthor());
+        blog.setContent(blogForm.getContent());
         blogDao.updateBlog(blog);
-
-        searchBlog(blog.getId());
+//        searchBlog(blog.getId());
     }
 //删除
     public  int  removeBlog(int id){

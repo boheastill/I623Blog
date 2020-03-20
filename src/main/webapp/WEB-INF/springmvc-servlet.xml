@@ -2,7 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -11,16 +10,68 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <!-- LoginController控制器类，映射到"/login" -->
-    <bean name="/login" class="cn.i623.blog.controller.LoginController"/>
-    <!-- LoginController控制器类，映射到"/register" -->
-    <bean name="/register" class="cn.i623.blog.controller.RegisterController"/>
-<!--    ModelAndView中的参数可以省略头尾-->
-<!--    返回的视图名称都解析为 InternalResourceView 对象-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+    <!--   传统控制方法
+       &lt;!&ndash; LoginController控制器类，映射到"/login" &ndash;&gt;
+       <bean name="/login" class="cn.i623.blog.controller.LoginController"/>
+       &lt;!&ndash; LoginController控制器类，映射到"/register" &ndash;&gt;
+       <bean name="/register" class="cn.i623.blog.controller.RegisterController"/>
+   -->
+    <!--    ModelAndView中的参数可以省略头尾-->
+    <!--    返回的视图名称都解析为 InternalResourceView 对象-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--前缀-->
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <!--后缀-->
         <property name="suffix" value=".jsp"/>
     </bean>
+    <!--    扫描控制类-->
+    <context:component-scan base-package="cn.i623.blog.controller"/>
+    <context:component-scan base-package="cn.i623.blog.service"/>
+    <context:component-scan base-package="cn.i623.blog.dao"/>
+    <context:component-scan base-package="cn.i623.blog.entiy"/>
+
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <context:property-placeholder location="WEB-INF/jdbc.properties"/>
+
+    <!-- annotation-driven用于简化开发的配置，
+    注解DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter -->
+    <mvc:annotation-driven/>
+    <!--     使用resources过滤掉不需要dispatcherservlet的资源（即静态资源，例如css、js、html、images）。-->
+    <!--        在使用resources时必须使用annotation-driven，否则resources元素会阻止任意控制器被调用 -->
+    <!--     允许css目录下的所有文件可见 -->
+
+    <!--    location元素表示webapp目录下的static包下的所有文件；-->
+
+    <!--    mapping元素表示以/static开头的所有请求路径，如/static/a 或者/static/a/b；-->
+
+    <!--    该配置的作用是：DispatcherServlet不会拦截以/static开头的所有请求路径，并当作静态资源-->
+
+    <!--    交由Servlet处理。-->
+    <!--    <mvc:resources location="/WEB-INF/editor_md/" mapping="/WEB-INF/editor_md/**"/>-->
+    <!-- 允许html目录下的所有文件可见 -->
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/images" mapping="/images/**"/>
+
+    <!--    响应utf-8,防止jsp乱码-->
+<!--
+    spring对String类型的返回的编码采用StringHttpMessageConverter
+    spring MVC返回string，使用StringHttpMessageConverter，convert使用的是字符集是iso-8859-1,
+    public static final Charset DEFAULT_CHARSET = Charset.forName("ISO-8859-1");
+-->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/plain;charset=UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>

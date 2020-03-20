@@ -59,7 +59,6 @@ public class BlogDaoImpl implements BlogDao {
 
     //按条件查询:参数1sql 参数2结果集，可以是处理器，可以是Interget.class，参数3是单个条件
     public Blog queryBlogbyid(int id) {
-
         Blog blog = this.jdbcTemplate.queryForObject(
                 "select * from blog where id = ?",
                 new RowMapper<cn.i623.blog.entiy.Blog>() {
@@ -81,8 +80,8 @@ public class BlogDaoImpl implements BlogDao {
     //更新:sql设置了update时候，修改时间 字段会自动更新。
     public void updateBlog(Blog blog) {
 
-        this.jdbcTemplate.update("update blog set title = ?,content=? where id = ?",
-                blog.getTitle(), blog.getContent(), blog.getId());
+        this.jdbcTemplate.update("update blog set title = ?,author=?,content=? where id = ?",
+                blog.getTitle(), blog.getAuthor(),blog.getContent(), blog.getId());
     }
 
     //删除
