@@ -25,6 +25,7 @@ public class BlogDaoImpl implements BlogDao {
     @Autowired//注入到了本类，类初始化顺带new出了jdbcTemplate
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+//        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
 
@@ -36,13 +37,28 @@ public class BlogDaoImpl implements BlogDao {
                 blog.getTitle(), blog.getContent(), t, t, blog.getAuthor());
     }
 
+    /*
+    查询多条记录封装成List<Student>
+    如果要封装成List<Student>对象怎么办呢？
+用queryForList方法则需要自己实现RowMapper接口。
 
-    //2.查询全部，被调用类
-    public List<Blog> findAllBlogs() {
-        return this.jdbcTemplate.query("select * from blog", new BlogMapper());
+    List<T> query(String sql, RowMapper<T> rowMapper, Object... args)
+    作用：将多条记录封装成一个List集合
+​
+
+2) 映射接口，我们提供实现类BeanPropertyRowMapper
+3) 占位符的值
+​
+    返回值：一个集合，每个元素是实体类对象
+
+
+    *///2.查询全部，被调用类
+    public List<Blog> listBlogs(int minIndex, int maxRow) {
+        String sql = "select * from blog ORDER BY modifytime desc LIMIT ? OFFSET ?";
+        return this.jdbcTemplate.query(sql, new BlogMapper(), maxRow, minIndex);
     }
 
-    //2.查询全部，findAllBlogs中的返回值处理类
+    //2.查询全部，listBlogs中的返回值处理类
     private static final class BlogMapper implements RowMapper<Blog> {
         public Blog mapRow(ResultSet resultSet, int rowNum) throws SQLException {
             Blog blog = new Blog();
@@ -52,6 +68,7 @@ public class BlogDaoImpl implements BlogDao {
             blog.setContent(resultSet.getString("content"));
             blog.setCreatTime(resultSet.getDate("creatTime"));
             blog.setModifyTime(resultSet.getDate("modifyTime"));
+//            System.out.println("dao写入id:" + blog.getId());
             return blog;
         }
     }

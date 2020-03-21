@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface BlogService {
     //查询全部
-     List<Blog> searchBlogList();
+     List<BlogForm> listBlogs(int maxRow,
+             int page);
 
     //增加博客
      void addBlog(BlogForm blogForm);

@@ -5,7 +5,9 @@ import cn.i623.blog.pojo.BlogForm;
 import cn.i623.blog.service.BlogService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,13 +31,26 @@ public class BlogController {
     BlogService blogService;
 
     @RequestMapping(value = "/add")
-    public String login(@ModelAttribute("blog") BlogForm blogForm) {
+    public String saveBlog(@ModelAttribute("blog") BlogForm blogForm) {
         blogService.addBlog(blogForm);
         return "addview";
     }
 
+    @RequestMapping(value = "/findlist")
+    public String listBlog(Model model) {
+        List<BlogForm> listBlogs= blogService.listBlogs(3, 1);
+        /*for (BlogForm blog:listBlogs){
+            System.out.println("控制类"+blog.getId());
+        }*/
+
+        model.addAttribute("listBlogs",listBlogs);
+//        model.addAttribute(listBlogs);
+        return "listBlogView";
+    }
+
+
     @RequestMapping(value = "/edit")
-    public String register(@ModelAttribute("blog") BlogForm blogForm) {
+    public String editBlog(@ModelAttribute("blog") BlogForm blogForm) {
         blogService.editBlog(blogForm);
         return "editblog";
     }

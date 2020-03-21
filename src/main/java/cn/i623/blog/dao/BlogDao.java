@@ -16,7 +16,7 @@ public interface BlogDao {
      void addBlog(Blog blog);
 
     //列表查询
-     List<Blog> findAllBlogs();
+     List<Blog> listBlogs(int minIndex,int maxRow);
 
     //查询
      Blog queryBlogbyid(int id);

@@ -12,14 +12,36 @@
             width: 90%;
             margin: 0 auto;
         }
+
+        body {
+            background-color: #d0e4fe;
+        }
+
+        label {
+            font-family: "Times New Roman";
+            font-size: 20px;
+        }
+
     </style>
 </head>
 <body>
-<%--<a href="/blog/edit?">编辑内容：<a/>--%>
+
+<%--    <label for="title">title:</label>--%>
+<%--    <input id="title" type="text" value="${blog.title}"/>--%>
+
+<%--    <label for="author">author:</label>--%>
+<%--    <input id="author" type="text" value="${blog.author}"/>--%>
+
 <div id="layout">
+
+    <div class="fa-align-center">
+        <h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题：${blog.title}</h2>
+        <br><br>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：${blog.author}</h3>
+        <br></div>
     <div id="blogdoc">
-            <textarea style="display:none;" id="content" name="markdown-doc" value="${
-            blog.title +blog.author +blog.id + blogJson.content}"></textarea>
+        <textarea style="display:none;" id="content" name="markdown-doc">${blog.content}</textarea>
     </div>
 </div>
 <script src="../../js/jquery.min.js"></script>
@@ -35,23 +57,22 @@
 <script type="text/javascript">
     $(function () {
         var testEditormdView
-        $.get("getBolgForm",
-            function (blogJsonStr) {
 
-                testEditormdView = editormd.markdownToHTML("blogdoc", {
-                    //markdown是属性，可不申明，申明后可以被参数赋值
+        testEditormdView = editormd.markdownToHTML("blogdoc", {
+            //markdown是属性，可不申明，申明后可以被参数赋值
 
-                    htmlDecode: "style,script,iframe",  // you can filter tags decode
+            // markdowm:
 
-                    tocm: true,    // Using [TOCM]
 
-                    emoji: true,
-                    taskList: true,
-                    tex: true,  // 默认不解析
-                    flowChart: true,  // 默认不解析
-                    sequenceDiagram: true,  // 默认不解析
-                });
-            });
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            tocm: true,    // Using [TOCM]
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+        });
+
 
     });
 </script>

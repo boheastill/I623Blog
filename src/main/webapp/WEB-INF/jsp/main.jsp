@@ -2,26 +2,70 @@
          pageEncoding="UTF-8" %>
 <html lang="zh">
 <head Set-Cookie: widget_session=abc123; SameSite=None; Secure>
-
+<%--    <link rel="stylesheet" type="text/css" href="mystyle.css" />--%>
     <meta charset="utf-8"/>
     <title>md编辑</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/editormd.css"/>
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: #d0e4fe;
+            padding: 20px
+        }
+
+        h1 {
+            /*color:orange;*/
+            /*text-align:center;*/
+        }
+
+        p {
+            /*font-family:"Times New Roman";*/
+            /*font-size:20px;*/
+        }
+
+        label {
+            font-family: "Times New Roman";
+            font-size: 22px;
+            text-align: left;
+        }
+
+        input {
+            font-family: "Times New Roman";
+            font-size: 18px;
+            text-align: left; margin-bottom: 10px;
+
+        }
+        form div{
+
+        }
+
+    </style>
+
 </head>
 <body>
 
-
+<a href="/blog/findlist"> 查看列表<a />
 <!--在外层定义一个form，用来取值和提交表单-->
 <form name="BlogEditorForm">
-    title: <input type="text" name="title" autofocus="autofocus" /><br />
-    author: <input type="text" name="author" /><br />
-<%--    E-mail: <input type="email" name="email" autocomplete="off" /><br />--%>
-<%--    <input type="submit" />--%>
+
+    <div  style="color: sienna; margin-left: 150px ;text-align: left" >
+
+        <label for="title">标题:</label>
+        <input type="text" name="title" id="title" autofocus="autofocus"/><br/>
+        <label for="author">作者:</label>
+        <input type="text" name="author" id="author"/><br/>
+        <%--    E-mail: <input type="email" name="email" autocomplete="off" /><br />--%>
+        <%--    <input type="submit" />--%>
+    </div>
     <div id="test-editormd">
         <!--该区域内容为md文本内容，非html内容-->
         <textarea name="content" id="content" style="display:none;" charset=UTF-8>>text文本内容</textarea>
     </div>
+<%--    <div id="test-2">--%>
+<%--        <!--该区域内容为md文本内容，非html内容-->--%>
+<%--        <textarea name="content" tyle="display:none;" charset=UTF-8>>text文本内容</textarea>--%>
+<%--    </div>--%>
 
 </form>
 
