@@ -23,28 +23,45 @@
             font-family: "Times New Roman";
             font-size: 20px;
         }
+        div{
+
+            font-family: "Times New Roman";
+            font-size: 22px;
+            text-align:left;
+            padding: 40px
+        }
 
     </style>
 </head>
-${listBlogs}
+<a href="${pageContext.request.contextPath }/blog/tryToMain"> 返回主页<a />
 <c:forEach items="${listBlogs}" var="blog">
     <div id="layout">
         <div class="fa-align-center">
-            <label for="title">标题:</label>
-            <input id="title" type="text" value="${blog}" readonly/>
+          <%--  <label for="title">标题:</label>
+            <input id="title" type="text" value="${blog.title}" readonly/>
 
             <label for="author">作者:</label>
             <input id="author" type="text" value="${blog.author}" readonly/>
 
             <label for="content">正文:</label>
-            <textarea id="content">${blog.content}</textarea>
+            <textarea id="content">${blog.content}</textarea>--%>
+
+             <p>标题:${blog.title}<br>作者${blog.author}<br>正文:${blog.content}</p>
         </div>
     </div>
 </c:forEach>
+<form>
 
-<c:forEach var="i" begin="1" end="5">
-Item <c:out value="${i}"/>
-    </c:forEach>
+    <a href="${pageContext.request.contextPath }/blog/findlist">下一页</a>
+    <a href="${pageContext.request.contextPath }/blog/findlist">上一页</a>
+    当前页:
+    <label for="author"></label>
+    <input id="author" type="text" value="${blog.author}" readonly/>
 
-    </body>
+    <label for="content">正文:</label>
+    <textarea id="content">${blog.content}</textarea>--%>
+</form>
+    <foot>
+        <a href="http://beian.miit.gov.cn/" target="_blank" style="color:#666">陕ICP备18016856号</a>
+    </foot>
 </html>

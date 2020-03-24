@@ -24,7 +24,7 @@
         </div>
     --%>
 
-    <a href="/blog/edit?">编辑内容：<a/>
+    <a href="${pageContext.request.contextPath }/blog/edit?">编辑内容：<a/>
         <div id="txtMd-view">
             <textarea style="display:none;" id="content" name="markdown-doc"></textarea>
         </div>
@@ -116,4 +116,7 @@
 
 
 </body>
+<foot>
+    <a href="http://beian.miit.gov.cn/" target="_blank" style="color:#666">陕ICP备18016856号</a>
+</foot>
 </html>

@@ -14,4 +14,6 @@ public class BlogForm {
     private Date modifyTime; //
     private String author; //
     private int id; //
+    private int page; //
+    private int maxRow; //
 }

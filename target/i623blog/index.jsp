@@ -4,9 +4,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>i623blog在此</title>
 </head>
 <body>
+<%--加${pageContext.request.contextPath }开头，网页智能补全上下文，如本地，f12看到html代码是/user开头
+，服务器看到html变成了/项目名/user开头，才请求到了正确的资源，/user前面本地接本地服务器，但tomcat默认接服务器/项目名
+--%>
 <a href="${pageContext.request.contextPath }/user/register"> 注册</a>
 <br/>
 <a href="${pageContext.request.contextPath }/user/login"> 登录</a>

@@ -26,8 +26,9 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean register(UserForm userForm) {
-        if (true){
-            User user =new User();
+        //注册码，暂时写死
+        if ("fakar".equals(userForm.getCommand().trim().replace(" ", ""))) {
+            User user = new User();
             user.setName(userForm.getName());
             user.setPassword(userForm.getPassword());
             userDao.addUser(user);

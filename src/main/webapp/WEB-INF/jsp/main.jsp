@@ -5,8 +5,8 @@
 <%--    <link rel="stylesheet" type="text/css" href="mystyle.css" />--%>
     <meta charset="utf-8"/>
     <title>md编辑</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="stylesheet" href="/css/editormd.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/editormd.css"/>
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon">
     <style>
         body {
@@ -44,8 +44,9 @@
 
 </head>
 <body>
-
-<a href="/blog/findlist"> 查看列表<a />
+<a href="${pageContext.request.contextPath }/blog/findlist"> 查看列表<a />
+<a href="${pageContext.request.contextPath }/beta/icon"> tub<a />
+当前用户：${user.name}
 <!--在外层定义一个form，用来取值和提交表单-->
 <form name="BlogEditorForm">
 
@@ -113,8 +114,8 @@
 --%>
 
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/editormd.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/editormd.min.js"></script>
 <script type="text/javascript">
     var testEditor;
 
@@ -130,7 +131,7 @@
             width: "90%",
             height: 640,
             syncScrolling: "single",
-            path: "/js/lib/",
+            path: "${pageContext.request.contextPath }/js/lib/",
             saveHTMLToTextarea : false,
             /**下述为新增，上面一行记得加逗号结束*/
             /*指定需要显示的功能按钮*/
@@ -222,4 +223,7 @@
 
 </script>
 </body>
+<foot>
+    <a href="http://beian.miit.gov.cn/" target="_blank" style="color:#666">陕ICP备18016856号</a>
+</foot>
 </html>

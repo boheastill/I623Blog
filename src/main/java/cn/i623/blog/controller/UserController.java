@@ -1,7 +1,5 @@
 package cn.i623.blog.controller;
 
-import javax.servlet.http.HttpSession;
-
 import cn.i623.blog.pojo.UserForm;
 import cn.i623.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 //
 //import com.sun.org.apache.commons.logging.Log;
 //import com.sun.org.apache.commons.logging.LogFactory;
@@ -43,10 +43,10 @@ public class UserController {
     @RequestMapping("/register")
     public String register(@ModelAttribute("user") UserForm user) {
 
-        System.out.println("注册-----------"+user.toString());
+
         if (user.getName()!=null &&userService.register(user)) {
 //            logger.info("成功");
-            return "main"; // 注册成功，跳转到 login.jsp
+            return "main"; // 注册成功
         } else {
 //            logger.info("失败");
             // 使用@ModelAttribute("user")与model.addAttribute("user",user)的功能相同

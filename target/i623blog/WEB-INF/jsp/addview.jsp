@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html lang="zh">
+
 <head>
     <meta charset="utf-8"/>
     <title>提交成功</title>
@@ -25,6 +26,7 @@
     </style>
 </head>
 <body>
+<a href="${pageContext.request.contextPath }/blog/tryToMain"> 返回主页<a />
 
 <%--    <label for="title">title:</label>--%>
 <%--    <input id="title" type="text" value="${blog.title}"/>--%>
@@ -36,7 +38,7 @@
 
     <div class="fa-align-center">
         <h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题：${blog.title}</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题1：${blog.title}</h2>
         <br><br>
         <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：${blog.author}</h3>
         <br></div>
@@ -78,4 +80,7 @@
 </script>
 <%--<--%>
 </body>
+<foot>
+    <a href="http://beian.miit.gov.cn/" target="_blank" style="color:#666">陕ICP备18016856号</a>
+</foot>
 </html>

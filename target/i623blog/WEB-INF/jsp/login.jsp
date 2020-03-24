@@ -4,13 +4,36 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>load</title>
+    <title>用账号登录</title>
+    <style>
+        body {
+            background-color: #d0e4fe;
+            padding: 20px
+        }
+
+        label {
+            font-family: "Times New Roman";
+            font-size: 22px;
+            text-align: left;
+        }
+
+        input {
+            font-family: "Times New Roman";
+            font-size: 18px;
+            text-align: left; margin-bottom: 10px;
+        }
+
+    </style>
 </head>
 <body>
 <form action="${pageContext.request.contextPath }/user/login" method="post">
-    <table>
+    <table style="color: sienna; margin-left: 150px ;text-align: left">
 
-        ${messageError}
+        <tr>
+            <td  style="color: orange;" >
+                ${messageError}
+            </td>
+        </tr>
         <tr>
             <td>用户：</td>
             <td>
@@ -33,4 +56,7 @@
 
 </form>
 </body>
+<foot>
+    <a href="http://beian.miit.gov.cn/" target="_blank" style="color:#666">陕ICP备18016856号</a>
+</foot>
 </html>

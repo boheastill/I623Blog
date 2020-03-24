@@ -2,10 +2,10 @@ package cn.i623.blog.controller;
 
 import cn.i623.blog.entiy.Blog;
 import cn.i623.blog.pojo.BlogForm;
+import cn.i623.blog.pojo.UserForm;
 import cn.i623.blog.service.BlogService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +30,17 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
+    @RequestMapping(value = "/tryToMain")
+    public String ruturnMain(UserForm userForm) {
+//        //登录状态，就转发
+//        if (userForm.getName() == null || "".equals(userForm.getName().trim().replace(" ", ""))) {
+//            return "register";
+//        } else {
+//            return "mian";
+//        }
+        return "main";
+    }
+
     @RequestMapping(value = "/add")
     public String saveBlog(@ModelAttribute("blog") BlogForm blogForm) {
         blogService.addBlog(blogForm);
@@ -38,7 +49,11 @@ public class BlogController {
 
     @RequestMapping(value = "/findlist")
     public String listBlog(Model model) {
-        List<BlogForm> listBlogs= blogService.listBlogs(3, 1);
+        int maxRow=30;
+        int page = 1;
+
+
+        List<BlogForm> listBlogs = blogService.listBlogs(maxRow, page);
         /*for (BlogForm blog:listBlogs){
             System.out.println("控制类"+blog.getId());
         }*/

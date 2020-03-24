@@ -35,5 +35,6 @@ public class UserForm {
      * creattime
      */
     private Date creattime;
+    private String command;
 
 }

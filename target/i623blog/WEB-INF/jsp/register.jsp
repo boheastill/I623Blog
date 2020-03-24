@@ -5,11 +5,29 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>创建一个账号</title>
+    <style>
+        body {
+            background-color: #d0e4fe;
+            padding: 20px
+        }
+
+        label {
+            font-family: "Times New Roman";
+            font-size: 22px;
+            text-align: left;
+        }
+
+        input {
+            font-family: "Times New Roman";
+            font-size: 18px;
+            text-align: left; margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/user/register" method="post" name="registForm">
-    <table border=1 bgcolor="lightblue" align="center">
-        <tr>n
+<form action="${pageContext.request.contextPath }/user/register" method="post" name="registForm" >
+    <table border=1 bgcolor="lightblue" align="center" style="color: sienna; margin-left: 150px ;text-align: left">
+        <tr>
             <td>用户：</td>
             <td>
                 <input class="textSize" type="text" name="name" value="${name}"/>
@@ -19,6 +37,12 @@
             <td>密码：</td>
             <td>
                 <input class="textSize" type="password" maxlength="20" name="password"/>
+            </td>
+        </tr>
+        <tr>
+            <td>口令（预计4月可获取）：</td>
+            <td>
+                <input class="textSize" type="text" maxlength="20" name="command"/>
             </td>
         </tr>
 <%--        <tr>--%>
@@ -35,4 +59,7 @@
         </table>
 </form>
 </body>
+<foot>
+    <a href="http://beian.miit.gov.cn/" target="_blank" style="color:#666">陕ICP备18016856号</a>
+</foot>
 </html>
