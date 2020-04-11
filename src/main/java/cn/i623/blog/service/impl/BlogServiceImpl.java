@@ -72,10 +72,16 @@ public class BlogServiceImpl implements BlogService {
     }
 
     //查询
-    public Blog searchBlog(int id){
+    public BlogForm searchBlog(int id){
         Blog blog= blogDao.queryBlogbyid(id);
-//        System.out.println(blog);
-        return blog;
+        BlogForm blogForm = new BlogForm();
+        blogForm.setId(blog.getId());
+        blogForm.setTitle(blog.getTitle());
+        blogForm.setAuthor(blog.getAuthor());
+        blogForm.setContent(blog.getContent());
+        blogForm.setCreatTime(blog.getCreatTime());
+        blogForm.setModifyTime(blog.getModifyTime());
+        return blogForm;
     }
 
     //修改
@@ -83,8 +89,8 @@ public class BlogServiceImpl implements BlogService {
         blog.setTitle(blogForm.getTitle());
         blog.setAuthor(blogForm.getAuthor());
         blog.setContent(blogForm.getContent());
+        blog.setId(blogForm.getId());
         blogDao.updateBlog(blog);
-//        searchBlog(blog.getId());
     }
 //删除
     public  int  removeBlog(int id){

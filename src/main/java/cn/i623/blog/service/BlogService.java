@@ -14,7 +14,7 @@ public interface BlogService {
      void addBlog(BlogForm blogForm);
 
     //查询单个
-     Blog searchBlog(int id);
+     BlogForm searchBlog(int id);
 
     //修改
      void editBlog(BlogForm blogForm);

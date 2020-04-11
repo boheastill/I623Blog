@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -42,7 +43,8 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/add")
-    public String saveBlog(@ModelAttribute("blog") BlogForm blogForm) {
+    public String addBlog(@ModelAttribute("blog") BlogForm blogForm) {
+        //blogForm来源前端，分别传向另一个前端和数据库
         blogService.addBlog(blogForm);
         return "addview";
     }
@@ -51,22 +53,26 @@ public class BlogController {
     public String listBlog(Model model) {
         int maxRow=30;
         int page = 1;
-
-
         List<BlogForm> listBlogs = blogService.listBlogs(maxRow, page);
-        /*for (BlogForm blog:listBlogs){
-            System.out.println("控制类"+blog.getId());
-        }*/
-
         model.addAttribute("listBlogs",listBlogs);
-//        model.addAttribute(listBlogs);
         return "listBlogView";
     }
 
-
     @RequestMapping(value = "/edit")
     public String editBlog(@ModelAttribute("blog") BlogForm blogForm) {
+        //想要从前台取出数据，有和vo同name的label
+//        System.out.println(blogForm.getId()+blogForm.getTitle()+blogForm.getCreatTime());
         blogService.editBlog(blogForm);
+        return "addview";
+    }
+
+    @RequestMapping(value = "/preEdit")//need id
+    public String preEditBlog(@RequestParam int id,Model model ) {
+//       @RequestParam int id, 取出url上的id
+        //数据库查出完整
+        BlogForm blogForm=blogService.searchBlog(id);
+//        System.out.println(blogForm);
+        model.addAttribute("blog",blogForm);
         return "editblog";
     }
 
@@ -81,12 +87,8 @@ public class BlogController {
         System.out.println("blogform控制");
         String blogId = req.getParameter("blogId");
         System.out.println(blogId);
-        Blog blog = blogService.searchBlog(50);
-        blogForm.setContent(blog.getContent());
-        blogForm.setTitle(blog.getTitle());
-        blogForm.setAuthor(blog.getAuthor());
-        blogForm.setCreatTime(blog.getCreatTime());
-        blogForm.setModifyTime(blog.getModifyTime());
+         blogForm = blogService.searchBlog(50);
+
         Gson gson = new Gson();
         String blogFormJson = gson.toJson(blogForm);
 //        System.out.println("后台发送："+blogFormJson);
