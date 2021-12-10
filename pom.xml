@@ -121,7 +121,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.12.1</version>
+            <version>2.15.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <!--        连接层官方文档（推荐了最佳实践版本）https://logging.apache.org/log4j/2.x/log4j-slf4j-impl/dependencies.html-->
